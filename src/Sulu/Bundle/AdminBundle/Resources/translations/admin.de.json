@@ -166,7 +166,7 @@
     "sulu_admin.link_url": "Link URL",
     "sulu_admin.link_query": "Query String",
     "sulu_admin.link_anchor": "Link Anker",
-    "sulu_admin.icon_selection_select'": "Icon auswählen",
+    "sulu_admin.icon_selection_select": "Icon auswählen",
     "sulu_admin.icon_selection_no_icons": "Keine Icons gefunden.",
     "sulu_admin.mail_subject": "E-Mail Betreff",
     "sulu_admin.mail_body": "E-Mail Text",
