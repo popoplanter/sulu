@@ -51,9 +51,9 @@ class IconSelection extends React.Component<FieldTypeProps> {
         const iconsUrl = window.location.origin + '/' + path + '/icons.json';
 
         fetch(iconsUrl).then(action((response) => response.json()))
-            .then(action((responseJson) => {
-                this.icons = responseJson;
-            })).catch((error) => {
+                       .then(action((responseJson) => {
+                           this.icons = responseJson;
+                       })).catch((error) => {
             console.error(error);
         });
     }
@@ -121,44 +121,44 @@ class IconSelection extends React.Component<FieldTypeProps> {
         const {className, disabled, valid, value} = this.props;
 
         if (!this.icons || 0 === this.icons.length) {
-            return <div className={ iconSelectionStyle.iconsErrorMessage }>
-                { translate('sulu_admin.icon_selection_no_icons') }
+            return <div className={iconSelectionStyle.iconsErrorMessage}>
+                {translate('sulu_admin.icon_selection_no_icons')}
             </div>
         }
 
         return (
             <Fragment>
                 <SingleItemSelection
-                    className={ className }
-                    disabled={ disabled }
-                    emptyText={ translate('sulu_admin.icon_selection_select') }
-                    id={ value }
-                    leftButton={ {
+                    className={className}
+                    disabled={disabled}
+                    emptyText={translate('sulu_admin.icon_selection_select')}
+                    id={value}
+                    leftButton={{
                         icon: 'su-image',
                         onClick: this.handleOverlayOpen,
-                    } }
-                    loading={ false }
-                    onItemClick={ this.handleOverlayOpen }
-                    onRemove={ this.selectedIcon ? this.handleRemove : undefined }
-                    valid={ valid }
-                    value={ this.selectedIcon }
+                    }}
+                    loading={false}
+                    onItemClick={this.handleOverlayOpen}
+                    onRemove={this.selectedIcon ? this.handleRemove : undefined}
+                    valid={valid}
+                    value={this.selectedIcon}
                 >
-                    { value &&
-                    <div className={ iconSelectionStyle.iconItem }>
-                        <div className={ iconSelectionStyle.iconTitle }>{ value }</div>
-                    </div>
+                    {value &&
+                        <div className={iconSelectionStyle.iconItem}>
+                            <div className={iconSelectionStyle.iconTitle}>{value}</div>
+                        </div>
                     }
                 </SingleItemSelection>
 
                 <Overlay
-                    confirmText={ translate('sulu_admin.confirm') }
-                    onClose={ this.handleOverlayClose }
-                    onConfirm={ this.handleOverlayConfirm }
-                    open={ this.overlayOpen }
-                    title={ translate('sulu_admin.icon_selection_select') }
+                    confirmText={translate('sulu_admin.confirm')}
+                    onClose={this.handleOverlayClose}
+                    onConfirm={this.handleOverlayConfirm}
+                    open={this.overlayOpen}
+                    title={translate('sulu_admin.icon_selection_select')}
                 >
-                    <div className={ iconSelectionStyle.iconsOverlayItems }>
-                        { this.icons.map((icon, index) => this.renderIcon(icon, value, index)) }
+                    <div className={iconSelectionStyle.iconsOverlayItems}>
+                        {this.icons.map((icon, index) => this.renderIcon(icon, value, index))}
                     </div>
                 </Overlay>
             </Fragment>
@@ -185,15 +185,15 @@ class IconSelection extends React.Component<FieldTypeProps> {
             }
         );
 
-        return <div key={ index } className={ iconSelectionStyle.iconsOverlayItem + ' ' + name }>
-            <div className={ classesNames } onClick={ () => {
+        return <div key={index} className={iconSelectionStyle.iconsOverlayItem + ' ' + name}>
+            <div className={classesNames} onClick={() => {
                 this.handleIconClick(name)
-            } }>
-                <div className={ iconSelectionStyle.iconsOverlayItemTitle }>
-                    { name }
+            }}>
+                <div className={iconSelectionStyle.iconsOverlayItemTitle}>
+                    {name}
                 </div>
 
-                <img src={ src } alt={ icon.name }/>
+                <img src={src} alt={icon.name}/>
 
                 {/*<svg viewBox="0 0 1000 1000" width="50" height="50">*/}
                 {/*    { paths.map((path, index) => this.renderPath(path, index)) }*/}
@@ -210,7 +210,7 @@ class IconSelection extends React.Component<FieldTypeProps> {
      * @returns {JSX.Element|Null}
      */
     renderPath(path, index) {
-        return <path d={ path } key={ index } fill="#262626"></path>;
+        return <path d={path} key={index} fill="#262626"></path>;
     }
 }
 
