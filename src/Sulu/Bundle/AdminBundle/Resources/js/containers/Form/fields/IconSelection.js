@@ -192,7 +192,6 @@ class IconSelection extends React.Component<FieldTypeProps> {
         return <div key={index} className={iconSelectionStyle.iconsOverlayItem + ' ' + name}>
             <div className={classesNames} onClick={() => {
                 this.handleIconClick(name)
-<<<<<<< HEAD
             }}>
                 <div className={iconSelectionStyle.iconsOverlayItemTitle}>
                     {name}
@@ -203,19 +202,6 @@ class IconSelection extends React.Component<FieldTypeProps> {
                 {/*<svg viewBox="0 0 1000 1000" width="50" height="50">*/}
                 {/*    { paths.map((path, index) => this.renderPath(path, index)) }*/}
                 {/*</svg>*/}
-=======
-            } }>
-                <img src={ src } alt={ icon.name }/>
-
-                <div className={ iconSelectionStyle.iconsOverlayItemTitle }>
-                    { name }
-                </div>
-
-                {/*for icomoon selection.json:*/ }
-                {/*<svg viewBox="0 0 1000 1000" width="50" height="50">*/ }
-                {/*    { paths.map((path, index) => this.renderPath(path, index)) }*/ }
-                {/*</svg>*/ }
->>>>>>> 890d7c64774b6b8524c4d0d516ed7b1daa16e88d
             </div>
         </div>;
     }
