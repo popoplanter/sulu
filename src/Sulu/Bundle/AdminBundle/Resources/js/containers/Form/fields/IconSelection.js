@@ -12,6 +12,7 @@ import { FieldTypeProps } from '../../../types';
 @observer
 class IconSelection extends React.Component<FieldTypeProps> {
     @observable icons;
+    @observable iconsPath;
     @observable clickedIcon = null;
     @observable selectedIcon = null;
     @observable overlayOpen: boolean = false;
@@ -45,10 +46,10 @@ class IconSelection extends React.Component<FieldTypeProps> {
     }
 
     @action fetchIcons() {
-        const path = this.props.schemaOptions.path !== undefined
+        this.iconsPath = this.props.schemaOptions.path !== undefined
             ? this.props.schemaOptions.path.value
             : 'icons';
-        const iconsUrl = window.location.origin + '/' + path + '/icons.json';
+        const iconsUrl = window.location.origin + '/' + this.iconsPath + '/icons.json';
 
         fetch(iconsUrl).then(action((response) => response.json()))
                        .then(action((responseJson) => {
@@ -81,7 +82,10 @@ class IconSelection extends React.Component<FieldTypeProps> {
 
     handleOverlayOpen = () => {
         this.openOverlay();
-        window.setTimeout(this.scrollToIcon.bind(this), 100);
+
+        if (this.selectedIcon) {
+            window.setTimeout(this.scrollToIcon.bind(this), 100);
+        }
     };
 
     handleOverlayClose = () => {
@@ -134,7 +138,7 @@ class IconSelection extends React.Component<FieldTypeProps> {
                     emptyText={translate('sulu_admin.icon_selection_select')}
                     id={value}
                     leftButton={{
-                        icon: 'su-image',
+                        icon: 'su-magic',
                         onClick: this.handleOverlayOpen,
                     }}
                     loading={false}
@@ -176,7 +180,7 @@ class IconSelection extends React.Component<FieldTypeProps> {
      */
     renderIcon(icon, value, index) {
         const name = 'icon-' + icon.name;
-        const src = '/icons/' + icon.src;
+        const src = '/' + this.iconsPath + '/' + icon.src;
 
         const classesNames = classNames(
             iconSelectionStyle.iconsOverlayItemContent,
@@ -188,6 +192,7 @@ class IconSelection extends React.Component<FieldTypeProps> {
         return <div key={index} className={iconSelectionStyle.iconsOverlayItem + ' ' + name}>
             <div className={classesNames} onClick={() => {
                 this.handleIconClick(name)
+<<<<<<< HEAD
             }}>
                 <div className={iconSelectionStyle.iconsOverlayItemTitle}>
                     {name}
@@ -198,6 +203,19 @@ class IconSelection extends React.Component<FieldTypeProps> {
                 {/*<svg viewBox="0 0 1000 1000" width="50" height="50">*/}
                 {/*    { paths.map((path, index) => this.renderPath(path, index)) }*/}
                 {/*</svg>*/}
+=======
+            } }>
+                <img src={ src } alt={ icon.name }/>
+
+                <div className={ iconSelectionStyle.iconsOverlayItemTitle }>
+                    { name }
+                </div>
+
+                {/*for icomoon selection.json:*/ }
+                {/*<svg viewBox="0 0 1000 1000" width="50" height="50">*/ }
+                {/*    { paths.map((path, index) => this.renderPath(path, index)) }*/ }
+                {/*</svg>*/ }
+>>>>>>> 890d7c64774b6b8524c4d0d516ed7b1daa16e88d
             </div>
         </div>;
     }
