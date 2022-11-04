@@ -290,6 +290,7 @@ class SuluPageExtension extends Extension implements PrependExtensionInterface
         $loader->load('command.xml');
         $loader->load('link-tag.xml');
         $loader->load('versioning.xml');
+        $loader->load('icon.xml');
 
         if (\array_key_exists('SuluAudienceTargetingBundle', $bundles)) {
             $loader->load('rule.xml');

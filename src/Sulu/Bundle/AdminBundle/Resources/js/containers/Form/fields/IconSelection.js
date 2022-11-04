@@ -2,15 +2,22 @@
 import React, { Fragment } from 'react';
 import { observer } from 'mobx-react';
 import { Overlay } from 'sulu-admin-bundle/components'
-import { action, observable, reaction } from 'mobx';
+import { action, observable, reaction, computed } from 'mobx';
 import SingleItemSelection from 'sulu-admin-bundle/components/SingleItemSelection';
 import { translate } from 'sulu-admin-bundle/utils/Translator';
 import iconSelectionStyle from './iconSelection.scss';
-import classNames from 'classnames';
 import { FieldTypeProps } from '../../../types';
+import SingleListOverlay from '../../SingleListOverlay';
+import userStore from '../../../stores/userStore';
 
 @observer
 class IconSelection extends React.Component<FieldTypeProps> {
+    @computed get locale(): IObservableValue<string> {
+        const {formInspector} = this.props;
+
+        return formInspector.locale ? formInspector.locale : observable.box(userStore.contentLocale);
+    }
+
     @observable icons;
     @observable iconsPath;
     @observable clickedIcon = null;
@@ -154,67 +161,25 @@ class IconSelection extends React.Component<FieldTypeProps> {
                     }
                 </SingleItemSelection>
 
-                <Overlay
-                    confirmText={translate('sulu_admin.confirm')}
+                {/*TODO: Use SingleListOverlay with IconAdapter as adapter*/}
+
+                <SingleListOverlay
+                    adapter="icon"
+                    disabledIds={[]}
+                    itemDisabledCondition={false}
+                    listKey="icons"
+                    locale={this.locale}
                     onClose={this.handleOverlayClose}
                     onConfirm={this.handleOverlayConfirm}
                     open={this.overlayOpen}
+                    options={[]}
+                    preSelectedItem={[]}
+                    // preSelectedItem={this.selectedIcon}
+                    resourceKey="icons"
                     title={translate('sulu_admin.icon_selection_select')}
-                >
-                    <div className={iconSelectionStyle.iconsOverlayItems}>
-                        {this.icons.map((icon, index) => this.renderIcon(icon, value, index))}
-                    </div>
-                </Overlay>
+                />
             </Fragment>
         );
-    }
-
-    /**
-     * Renders a single icon.
-     *
-     * @param {Object} icon
-     * @param {String} value
-     * @param {Number} index
-     *
-     * @returns {JSX.Element|Null}
-     */
-    renderIcon(icon, value, index) {
-        const name = 'icon-' + icon.name;
-        const src = '/' + this.iconsPath + '/' + icon.src;
-
-        const classesNames = classNames(
-            iconSelectionStyle.iconsOverlayItemContent,
-            {
-                [iconSelectionStyle.isSelected]: name === this.clickedIcon,
-            }
-        );
-
-        return <div key={index} className={iconSelectionStyle.iconsOverlayItem + ' ' + name}>
-            <div className={classesNames} onClick={() => {
-                this.handleIconClick(name)
-            }}>
-                <div className={iconSelectionStyle.iconsOverlayItemTitle}>
-                    {name}
-                </div>
-
-                <img src={src} alt={icon.name}/>
-
-                {/*<svg viewBox="0 0 1000 1000" width="50" height="50">*/}
-                {/*    { paths.map((path, index) => this.renderPath(path, index)) }*/}
-                {/*</svg>*/}
-            </div>
-        </div>;
-    }
-
-    /**
-     * Renders a single SVG path.
-     *
-     * @param path
-     * @param index
-     * @returns {JSX.Element|Null}
-     */
-    renderPath(path, index) {
-        return <path d={path} key={index} fill="#262626"></path>;
     }
 }
 

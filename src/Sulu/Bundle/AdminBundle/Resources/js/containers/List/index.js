@@ -27,6 +27,7 @@ import ColumnListAdapter from './adapters/ColumnListAdapter';
 import TreeTableAdapter from './adapters/TreeTableAdapter';
 import TableAdapter from './adapters/TableAdapter';
 import FolderAdapter from './adapters/FolderAdapter';
+import IconAdapter from './adapters/IconAdapter';
 import AbstractAdapter from './adapters/AbstractAdapter';
 import FlatStructureStrategy from './structureStrategies/FlatStructureStrategy';
 import PaginatedLoadingStrategy from './loadingStrategies/PaginatedLoadingStrategy';
@@ -51,6 +52,7 @@ export {
     TreeTableAdapter,
     TableAdapter,
     FolderAdapter,
+    IconAdapter,
     FlatStructureStrategy,
     PaginatedLoadingStrategy,
     DefaultLoadingStrategy,

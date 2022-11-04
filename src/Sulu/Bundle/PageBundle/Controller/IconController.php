@@ -27,7 +27,7 @@ class IconController extends AbstractRestController implements ClassResourceInte
     }
 
     /**
-     * Returns teaser by ids (get-parameter).
+     * Returns icons.
      *
      * @return Response
      */
@@ -36,7 +36,7 @@ class IconController extends AbstractRestController implements ClassResourceInte
         return $this->handleView(
             $this->view(
                 new CollectionRepresentation(
-                    'data test icon',
+                    ['test'],
                     'icon'
                 )
             )
