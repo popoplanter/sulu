@@ -7,7 +7,7 @@ import { translate } from '../../../utils/Translator';
 import FlatStructureStrategy from '../structureStrategies/FlatStructureStrategy';
 import DefaultLoadingStrategy from '../loadingStrategies/DefaultLoadingStrategy';
 import AbstractAdapter from './AbstractAdapter';
-import iconSelectionStyle from '../../Form/fields/iconSelection.scss';
+import singleIconSelectStyle from '../../Form/fields/SingleIconSelect.scss';
 
 @observer
 class IconAdapter extends AbstractAdapter {
@@ -43,7 +43,7 @@ class IconAdapter extends AbstractAdapter {
         } = this.props;
 
         return (
-            <div className={iconSelectionStyle.iconsOverlayItems}>
+            <div className={singleIconSelectStyle.iconsOverlayItems}>
                 {data.map((icon, index) => this.renderIcon(icon, value, index))}
             </div>
 
@@ -76,17 +76,17 @@ class IconAdapter extends AbstractAdapter {
         const src = '/' + this.iconsPath + '/' + icon.src;
 
         const classesNames = classNames(
-            iconSelectionStyle.iconsOverlayItemContent,
+            singleIconSelectStyle.iconsOverlayItemContent,
             // {
-            //     [iconSelectionStyle.isSelected]: name === this.clickedIcon,
+            //     [singleIconSelectStyle.isSelected]: name === this.clickedIcon,
             // }
         );
 
-        return <div key={index} className={iconSelectionStyle.iconsOverlayItem + ' ' + name}>
+        return <div key={index} className={singleIconSelectStyle.iconsOverlayItem + ' ' + name}>
             <div className={classesNames} onClick={() => {
                 this.handleIconClick(name)
             }}>
-                <div className={iconSelectionStyle.iconsOverlayItemTitle}>
+                <div className={singleIconSelectStyle.iconsOverlayItemTitle}>
                     {name}
                 </div>
 

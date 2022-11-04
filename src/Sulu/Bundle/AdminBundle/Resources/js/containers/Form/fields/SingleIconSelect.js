@@ -5,13 +5,13 @@ import { Overlay } from 'sulu-admin-bundle/components'
 import { action, observable, reaction, computed } from 'mobx';
 import SingleItemSelection from 'sulu-admin-bundle/components/SingleItemSelection';
 import { translate } from 'sulu-admin-bundle/utils/Translator';
-import iconSelectionStyle from './iconSelection.scss';
+import singleIconSelectStyle from './singleIconSelect.scss';
 import { FieldTypeProps } from '../../../types';
 import SingleListOverlay from '../../SingleListOverlay';
 import userStore from '../../../stores/userStore';
 
 @observer
-class IconSelection extends React.Component<FieldTypeProps> {
+class SingleIconSelect extends React.Component<FieldTypeProps> {
     @computed get locale(): IObservableValue<string> {
         const {formInspector} = this.props;
 
@@ -117,7 +117,7 @@ class IconSelection extends React.Component<FieldTypeProps> {
     }
 
     scrollToIcon = () => {
-        const container = document.querySelector('.' + iconSelectionStyle.iconsOverlayItems)
+        const container = document.querySelector('.' + singleIconSelectStyle.iconsOverlayItems)
         const item = document.querySelector('.' + this.selectedIcon);
         const itemPos = item.offsetTop - item.clientHeight;
 
@@ -132,8 +132,8 @@ class IconSelection extends React.Component<FieldTypeProps> {
         const {className, disabled, valid, value} = this.props;
 
         if (!this.icons || 0 === this.icons.length) {
-            return <div className={iconSelectionStyle.iconsErrorMessage}>
-                {translate('sulu_admin.icon_selection_no_icons')}
+            return <div className={singleIconSelectStyle.iconsErrorMessage}>
+                {translate('sulu_admin.single_icon_select.no_icons')}
             </div>
         }
 
@@ -142,7 +142,7 @@ class IconSelection extends React.Component<FieldTypeProps> {
                 <SingleItemSelection
                     className={className}
                     disabled={disabled}
-                    emptyText={translate('sulu_admin.icon_selection_select')}
+                    emptyText={translate('sulu_admin.single_icon_select.select')}
                     id={value}
                     leftButton={{
                         icon: 'su-magic',
@@ -155,8 +155,8 @@ class IconSelection extends React.Component<FieldTypeProps> {
                     value={this.selectedIcon}
                 >
                     {value &&
-                        <div className={iconSelectionStyle.iconItem}>
-                            <div className={iconSelectionStyle.iconTitle}>{value}</div>
+                        <div className={singleIconSelectStyle.iconItem}>
+                            <div className={singleIconSelectStyle.iconTitle}>{value}</div>
                         </div>
                     }
                 </SingleItemSelection>
@@ -176,11 +176,11 @@ class IconSelection extends React.Component<FieldTypeProps> {
                     preSelectedItem={[]}
                     // preSelectedItem={this.selectedIcon}
                     resourceKey="icons"
-                    title={translate('sulu_admin.icon_selection_select')}
+                    title={translate('sulu_admin.single_icon_select.select')}
                 />
             </Fragment>
         );
     }
 }
 
-export default IconSelection;
+export default SingleIconSelect;

@@ -13,10 +13,10 @@ namespace Sulu\Component\Content\Types;
 
 use Sulu\Component\Content\SimpleContentType;
 
-class IconSelection extends SimpleContentType
+class SingleIconSelect extends SimpleContentType
 {
     public function __construct()
     {
-        parent::__construct('icon_selection');
+        parent::__construct('single_icon_select');
     }
 }

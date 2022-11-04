@@ -35,7 +35,7 @@ import TextArea from './fields/TextArea';
 import TextEditor from './fields/TextEditor';
 import Url from './fields/Url';
 import Link from './fields/Link';
-import IconSelection from './fields/IconSelection';
+import SingleIconSelect from './fields/SingleIconSelect';
 import type {FormStoreInterface, Schema, Types} from './types';
 
 export {
@@ -74,7 +74,7 @@ export {
     TextEditor,
     Url,
     Link,
-    IconSelection,
+    SingleIconSelect,
 };
 export type {FormStoreInterface, Schema, Types};
 export default Form;
